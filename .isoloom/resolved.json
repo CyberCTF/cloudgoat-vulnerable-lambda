@@ -57,5 +57,16 @@
       }
     ]
   },
-  "message": null
+  "cloud": {
+    "provider": "aws",
+    "terraform": "terraform",
+    "outputs": [
+      "access_key_id",
+      "secret_key",
+      "account_id"
+    ],
+    "inputs": [],
+    "hourly_usd": 0.01
+  },
+  "message": "You are the IAM user Bilbo (account {{ cloud.outputs.account_id }}):\n  aws configure --profile bilbo   # access key {{ cloud.outputs.access_key_id }}\n                                  # secret key {{ cloud.outputs.secret_key }}\nGoal: the final flag in Secrets Manager. Cheat sheet:\napp/cloudgoat/scenarios/aws/vulnerable_lambda/cheat_sheet.md\n"
 }
