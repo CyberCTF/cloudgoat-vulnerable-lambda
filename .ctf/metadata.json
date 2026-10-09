@@ -1,0 +1,8 @@
+{
+  "title": "CloudGoat: vulnerable Lambda",
+  "description": "A CloudGoat scenario by Dave Yesland and Mitch Fentz (Rhino Security Labs), deployed into your own AWS account: starting as the IAM user Bilbo, assume a more privileged role, find a Lambda function that applies policies to users, and exploit its SQL injection to escalate Bilbo and read the secret.",
+  "question": "Starting as the IAM user Bilbo, read the final flag stored in Secrets Manager.",
+  "category": "MISC",
+  "difficulty": 2,
+  "evidence_kind": "SECRET"
+}

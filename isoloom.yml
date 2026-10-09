@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# CloudGoat's vulnerable_lambda scenario by Rhino Security Labs
+# (https://github.com/RhinoSecurityLabs/cloudgoat), in your own AWS account.
+# Source in app/ (upstream, unchanged); terraform/ is this lab's wrapper around the scenario's own
+# terraform/ folder, feeding it what CloudGoat's CLI would.
+# Run: `aws login`, then `isoloom run cloud-services`; end it with `isoloom down cloud-services`.
+version: 1
+name: cloudgoat-vulnerable-lambda
+
+cloud:
+  provider: aws
+  terraform: terraform
+  vars:
+    region: us-east-1
+    profile: default
+  outputs:
+    access_key_id: access_key_id
+    secret_key: secret_key
+    account_id: account_id
+  hourly_usd: 0.01
+
+checks:
+  - name: the user Bilbo can sign in and the policy applier function exists
+    script: checks/start.sh
+    wait: 120
+
+message: |
+  You are the IAM user Bilbo (account {{ cloud.outputs.account_id }}):
+    aws configure --profile bilbo   # access key {{ cloud.outputs.access_key_id }}
+                                    # secret key {{ cloud.outputs.secret_key }}
+  Goal: the final flag in Secrets Manager. Cheat sheet:
+  app/cloudgoat/scenarios/aws/vulnerable_lambda/cheat_sheet.md

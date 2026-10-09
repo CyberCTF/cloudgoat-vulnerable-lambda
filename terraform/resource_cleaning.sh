@@ -1,0 +1,1 @@
+../app/cloudgoat/scenarios/aws/vulnerable_lambda/terraform/resource_cleaning.sh
